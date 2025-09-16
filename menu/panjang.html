@@ -168,8 +168,11 @@
 
       @media (max-width: 480px) {
         header {
-          flex-direction: column;
-          align-items: flex-start;
+          flex-direction: row; /* tetap horizontal */
+          align-items: center; /* center vertikal */
+          justify-content: flex-start; /* bisa ganti center kalau mau logo & judul di tengah */
+          gap: 8px; /* jarak antar logo & judul */
+          margin-bottom: 20px;
         }
         header h1 {
           font-size: 22px;
@@ -290,7 +293,7 @@
       </div>
 
       <div class="fun-facts-section">
-        <h3>🚀 Fun Facts Seputar Panjang! 🚀</h3>
+        <h3>📏 Fun Facts Seputar Panjang! 📏</h3>
         <ul>
           <li>
             <strong>Yottameter (Ym)</strong> adalah satuan panjang terbesar

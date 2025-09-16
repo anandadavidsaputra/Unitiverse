@@ -152,17 +152,19 @@
       gap: 16px;
     }
     header {
-      flex-direction: column;
-      align-items: flex-start;
-      margin-bottom: 20px;
-    }
-    header h1 {
-      font-size: 22px;
-    }
-    header img {
-      width: 40px;
-      height: 40px;
-    }
+    flex-direction: row; /* tetap horizontal */
+    align-items: center;  /* center vertikal */
+    justify-content: flex-start; /* bisa ganti center kalau mau logo & judul di tengah */
+    gap: 8px; /* jarak antar logo & judul */
+    margin-bottom: 20px;
+  }
+  header h1 {
+    font-size: 22px;
+  }
+  header img {
+    width: 40px;
+    height: 40px;
+  }
     .card {
       padding: 18px;
       min-height: 100px;
@@ -263,9 +265,9 @@
       <div class="content">
         <div class="title">Astronomi</div>
         <hr>
-        <div class="desc">Mengubah satuan jarak astronomi seperti tahun cahaya. ✨</div>
+        <div class="desc">Mengubah satuan jarak astronomi seperti tahun cahaya. 🔭</div>
       </div>
-      <div class="emoji">✨</div>
+      <div class="emoji">🔭</div>
       <span class="detail-text">Klik untuk detail konversi</span>
     </a>
     <a href="menu/kecepatan.html" class="card">

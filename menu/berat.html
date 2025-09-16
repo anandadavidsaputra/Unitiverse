@@ -184,12 +184,11 @@
 
       @media (max-width: 480px) {
         header {
-          flex-direction: column;
-          align-items: flex-start;
-        }
-        .back-arrow {
-          height: auto; /* Sesuaikan tinggi agar tidak memengaruhi header saat wrap */
-          margin-bottom: 10px;
+          flex-direction: row; /* tetap horizontal */
+          align-items: center; /* center vertikal */
+          justify-content: flex-start; /* bisa ganti center kalau mau logo & judul di tengah */
+          gap: 8px; /* jarak antar logo & judul */
+          margin-bottom: 20px;
         }
         header h1 {
           font-size: 22px;
@@ -224,7 +223,7 @@
       </header>
 
       <div class="converter-section">
-        <h2>Konverter Satuan Berat (Massa)</h2>
+        <h2>Konverter Satuan Berat</h2>
         <div class="input-group">
           <label for="value">Nilai:</label>
           <input
@@ -294,7 +293,7 @@
       </div>
 
       <div class="fun-facts-section">
-        <h3>🚀 Fun Facts Seputar Berat (Massa)! 🚀</h3>
+        <h3>⚖️ Fun Facts Seputar Berat! ⚖️</h3>
         <ul>
           <li>
             <strong>Kilogram (kg)</strong> adalah satu-satunya satuan dasar SI
