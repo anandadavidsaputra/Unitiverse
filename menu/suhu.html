@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Konverter Suhu - Unitiverse</title>
+    <link rel="icon" type="image/png" href="../unitiverse.png" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap");
+
+      body {
+        margin: 0;
+        font-family: "Inter", sans-serif;
+        background: linear-gradient(135deg, #0d1a44, #6a1fb8);
+        color: #fff;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      .wrap {
+        max-width: 800px;
+        margin: 0 auto;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 28px;
+      }
+
+      header img {
+        width: 50px;
+        height: 50px;
+        object-fit: contain;
+      }
+
+      header h1 {
+        margin: 0;
+        font-size: 28px;
+        font-weight: 700;
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.5),
+          0 0 20px rgba(255, 255, 255, 0.3);
+      }
+
+      .converter-section {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 30px;
+        border-radius: 16px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+        margin-bottom: 30px;
+      }
+
+      .converter-section h2 {
+        text-align: center;
+        margin-top: 0;
+        margin-bottom: 25px;
+        font-size: 24px;
+        font-weight: 700;
+      }
+
+      .input-group {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 20px;
+      }
+
+      .input-group label {
+        font-size: 16px;
+        font-weight: 600;
+        min-width: 100px;
+      }
+
+      .input-group input[type="number"] {
+        flex-grow: 1;
+        padding: 12px 15px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 8px;
+        background: rgba(0, 0, 0, 0.2);
+        color: #fff;
+        font-size: 16px;
+        outline: none;
+        transition: border-color 0.2s ease;
+      }
+
+      .input-group input[type="number"]:focus {
+        border-color: #a78bfa;
+      }
+
+      .input-group select {
+        flex-grow: 1;
+        padding: 12px 15px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 8px;
+        background: rgba(0, 0, 0, 0.2);
+        color: #fff;
+        font-size: 16px;
+        outline: none;
+        cursor: pointer;
+        transition: border-color 0.2s ease;
+      }
+
+      .input-group select:focus {
+        border-color: #a78bfa;
+      }
+
+      .input-group select option {
+        background: #311f4d;
+        color: #fff;
+      }
+
+      .result-display {
+        margin-top: 25px;
+        text-align: center;
+        font-size: 18px;
+        font-weight: 600;
+        color: #a78bfa;
+      }
+
+      .fun-facts-section {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 25px;
+        border-radius: 16px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+        margin-top: 30px;
+      }
+
+      .fun-facts-section h3 {
+        text-align: center;
+        margin-top: 0;
+        margin-bottom: 15px;
+        font-size: 20px;
+        font-weight: 700;
+        color: #c4b5fd;
+      }
+
+      .fun-facts-section ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .fun-facts-section li {
+        font-size: 14px;
+        margin-bottom: 12px;
+        line-height: 1.6;
+      }
+
+      @media (max-width: 768px) {
+        .input-group {
+          flex-direction: column;
+          align-items: stretch;
+        }
+        .input-group label {
+          min-width: auto;
+          margin-bottom: 5px;
+        }
+        .converter-section {
+          padding: 20px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        header {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        header h1 {
+          font-size: 22px;
+        }
+        header img {
+          width: 40px;
+          height: 40px;
+        }
+        .converter-section h2 {
+          font-size: 20px;
+        }
+        .fun-facts-section h3 {
+          font-size: 18px;
+        }
+      }
+
+      .footer {
+        text-align: center;
+        padding: 20px 0;
+        font-size: 12px;
+        color: #ffffff;
+      }
+
+      .back-arrow {
+        font-size: 36px; /* Ukuran panah lebih besar */
+        color: #fff; /* Warna putih */
+        text-decoration: none; /* Hilangkan garis bawah */
+        margin-right: 15px; /* Jarak dari logo */
+        transition: color 0.2s ease, transform 0.2s ease; /* Efek hover */
+        display: flex; /* Untuk posisi vertikal di tengah */
+        align-items: center; /* Posisi vertikal di tengah */
+        height: 50px; /* Samakan tinggi dengan gambar logo */
+      }
+
+      .back-arrow:hover {
+        color: #a78bfa; /* Warna saat di-hover */
+        transform: translateX(-5px); /* Efek bergerak sedikit ke kiri */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header>
+        <a href="../index.html" class="back-arrow">←</a>
+        <img src="../unitiverse.png" alt="Unitiverse Logo" />
+        <h1>Unitiverse</h1>
+      </header>
+
+      <div class="converter-section">
+        <h2>Konverter Satuan Suhu</h2>
+        <div class="input-group">
+          <label for="value">Nilai:</label>
+          <input
+            type="number"
+            id="value"
+            placeholder="Masukkan nilai"
+            oninput="convertTemperature()"
+          />
+        </div>
+        <div class="input-group">
+          <label for="unit">Dari:</label>
+          <select id="unit" onchange="convertTemperature()">
+            <option value="K">Kelvin (K)</option>
+            <option value="mK">Millikelvin (mK)</option>
+            <option value="µK">Mikrokelvin (µK)</option>
+            <option value="daK">Dekakelvin (daK)</option>
+            <option value="hK">Hektokelvin (hK)</option>
+            <option value="kK">Kilokelvin (kK)</option>
+            <option value="C">Celsius (°C)</option>
+            <option value="F">Fahrenheit (°F)</option>
+            <option value="R">Rankine (°R)</option>
+            <option value="Re">Réaumur (°Re)</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <label for="target-unit">Ke:</label>
+          <select id="target-unit" onchange="convertTemperature()">
+            <option value="K">Kelvin (K)</option>
+            <option value="mK">Millikelvin (mK)</option>
+            <option value="µK">Mikrokelvin (µK)</option>
+            <option value="daK">Dekakelvin (daK)</option>
+            <option value="hK">Hektokelvin (hK)</option>
+            <option value="kK">Kilokelvin (kK)</option>
+            <option value="C">Celsius (°C)</option>
+            <option value="F">Fahrenheit (°F)</option>
+            <option value="R">Rankine (°R)</option>
+            <option value="Re">Réaumur (°Re)</option>
+          </select>
+        </div>
+        <div class="result-display" id="result">
+          Hasil konversi akan muncul di sini
+        </div>
+      </div>
+
+      <div class="fun-facts-section">
+        <h3>🌡️ Fun Facts Seputar Suhu! 🌡️</h3>
+        <ul>
+          <li>
+            <b>Titik Nol Mutlak (0 K / -273,15°C)</b> adalah suhu terendah yang
+            mungkin ada, di mana partikel berhenti bergerak sepenuhnya. Kita
+            tidak bisa benar-benar mencapainya! ❄️
+          </li>
+          <li>
+            <b>Celsius (°C)</b> dinamai dari astronom Swedia, Anders Celsius.
+            Awalnya skala menentukan titik didih air = 0°C dan titik beku =
+            100°C, kemudian dibalik oleh Carl Linnaeus. 💡
+          </li>
+          <li>
+            <b>Fahrenheit (°F)</b> banyak digunakan di Amerika Serikat. Titik
+            beku air = 32°F, titik didih = 212°F, memberikan rentang yang lebih
+            halus untuk cuaca sehari-hari. ☀️
+          </li>
+          <li>
+            <b>Rankine (°R)</b> adalah skala suhu absolut seperti Kelvin, tetapi
+            menggunakan skala Fahrenheit. 0°R = nol mutlak, umum di literatur
+            teknik AS. ⚙️
+          </li>
+          <li>
+            <b>Réaumur (°Re)</b> adalah skala lama yang jarang digunakan. Titik
+            beku air = 0°Re, titik didih = 80°Re. 🧐
+          </li>
+        </ul>
+      </div>
+    </div>
+    <footer class="footer">
+      Copyright © Unitiverse - Ananda David Saputa.
+    </footer>
+
+    <script>
+      function convertTemperature() {
+        const value = parseFloat(document.getElementById("value").value);
+        const unit = document.getElementById("unit").value;
+        const targetUnit = document.getElementById("target-unit").value;
+        const resultDisplay = document.getElementById("result");
+
+        if (isNaN(value)) {
+          resultDisplay.textContent = "Masukkan nilai yang valid.";
+          return;
+        }
+
+        let kelvinValue;
+
+        // Konversi ke Kelvin terlebih dahulu
+        switch (unit) {
+          case "K":
+            kelvinValue = value;
+            break;
+          case "mK":
+            kelvinValue = value * 1e-3;
+            break;
+          case "µK":
+            kelvinValue = value * 1e-6;
+            break;
+          case "daK":
+            kelvinValue = value * 1e1;
+            break;
+          case "hK":
+            kelvinValue = value * 1e2;
+            break;
+          case "kK":
+            kelvinValue = value * 1e3;
+            break;
+          case "C":
+            kelvinValue = value + 273.15;
+            break;
+          case "F":
+            kelvinValue = ((value - 32) * 5) / 9 + 273.15;
+            break;
+          case "R":
+            kelvinValue = (value * 5) / 9;
+            break;
+          case "Re":
+            kelvinValue = (value * 5) / 4 + 273.15;
+            break;
+        }
+
+        let finalResult;
+
+        // Konversi dari Kelvin ke satuan target
+        switch (targetUnit) {
+          case "K":
+            finalResult = kelvinValue;
+            break;
+          case "mK":
+            finalResult = kelvinValue * 1e3;
+            break;
+          case "µK":
+            finalResult = kelvinValue * 1e6;
+            break;
+          case "daK":
+            finalResult = kelvinValue * 1e-1;
+            break;
+          case "hK":
+            finalResult = kelvinValue * 1e-2;
+            break;
+          case "kK":
+            finalResult = kelvinValue * 1e-3;
+            break;
+          case "C":
+            finalResult = kelvinValue - 273.15;
+            break;
+          case "F":
+            finalResult = ((kelvinValue - 273.15) * 9) / 5 + 32;
+            break;
+          case "R":
+            finalResult = (kelvinValue * 9) / 5;
+            break;
+          case "Re":
+            finalResult = ((kelvinValue - 273.15) * 4) / 5;
+            break;
+        }
+
+        // Format hasil
+        let formattedResult;
+        if (unit === targetUnit) {
+          formattedResult = value.toString();
+        } else if (
+          finalResult > 1e6 ||
+          (finalResult < 1e-6 && finalResult !== 0)
+        ) {
+          formattedResult = finalResult.toExponential(4);
+        } else {
+          formattedResult = parseFloat(finalResult.toFixed(10)).toString();
+        }
+
+        resultDisplay.textContent = `${value} ${unit} = ${formattedResult} ${targetUnit}`;
+      }
+
+      // Panggil konversi saat halaman pertama kali dimuat
+      convertTemperature();
+    </script>
+  </body>
+</html>

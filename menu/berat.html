@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Konverter Berat - Unitiverse</title>
+    <link rel="icon" type="image/png" href="../unitiverse.png" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap");
+
+      body {
+        margin: 0;
+        font-family: "Inter", sans-serif;
+        background: linear-gradient(135deg, #0d1a44, #6a1fb8);
+        color: #fff;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      .wrap {
+        max-width: 800px;
+        margin: 0 auto;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      header {
+        display: flex;
+        align-items: center; /* Pastikan semua elemen sejajar di tengah secara vertikal */
+        gap: 12px;
+        margin-bottom: 28px;
+      }
+
+      .back-arrow {
+        font-size: 36px; /* Ukuran panah lebih besar */
+        color: #fff; /* Warna putih */
+        text-decoration: none; /* Hilangkan garis bawah */
+        margin-right: 15px; /* Jarak dari logo */
+        transition: color 0.2s ease, transform 0.2s ease; /* Efek hover */
+        display: flex; /* Untuk posisi vertikal di tengah */
+        align-items: center; /* Posisi vertikal di tengah */
+        height: 50px; /* Samakan tinggi dengan gambar logo */
+      }
+
+      .back-arrow:hover {
+        color: #a78bfa; /* Warna saat di-hover */
+        transform: translateX(-5px); /* Efek bergerak sedikit ke kiri */
+      }
+
+      header img {
+        width: 50px;
+        height: 50px;
+        object-fit: contain;
+      }
+
+      header h1 {
+        margin: 0;
+        font-size: 28px;
+        font-weight: 700;
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.5),
+          0 0 20px rgba(255, 255, 255, 0.3);
+      }
+
+      .converter-section {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 30px;
+        border-radius: 16px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+        margin-bottom: 30px;
+      }
+
+      .converter-section h2 {
+        text-align: center;
+        margin-top: 0;
+        margin-bottom: 25px;
+        font-size: 24px;
+        font-weight: 700;
+      }
+
+      .input-group {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 20px;
+      }
+
+      .input-group label {
+        font-size: 16px;
+        font-weight: 600;
+        min-width: 100px;
+      }
+
+      .input-group input[type="number"] {
+        flex-grow: 1;
+        padding: 12px 15px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 8px;
+        background: rgba(0, 0, 0, 0.2);
+        color: #fff;
+        font-size: 16px;
+        outline: none;
+        transition: border-color 0.2s ease;
+      }
+
+      .input-group input[type="number"]:focus {
+        border-color: #a78bfa;
+      }
+
+      .input-group select {
+        flex-grow: 1;
+        padding: 12px 15px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 8px;
+        background: rgba(0, 0, 0, 0.2);
+        color: #fff;
+        font-size: 16px;
+        outline: none;
+        cursor: pointer;
+        transition: border-color 0.2s ease;
+      }
+
+      .input-group select:focus {
+        border-color: #a78bfa;
+      }
+
+      .input-group select option {
+        background: #311f4d;
+        color: #fff;
+      }
+
+      .result-display {
+        margin-top: 25px;
+        text-align: center;
+        font-size: 18px;
+        font-weight: 600;
+        color: #a78bfa;
+      }
+
+      .fun-facts-section {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 25px;
+        border-radius: 16px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+        margin-top: 30px;
+      }
+
+      .fun-facts-section h3 {
+        text-align: center;
+        margin-top: 0;
+        margin-bottom: 15px;
+        font-size: 20px;
+        font-weight: 700;
+        color: #c4b5fd;
+      }
+
+      .fun-facts-section ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .fun-facts-section li {
+        font-size: 14px;
+        margin-bottom: 12px;
+        line-height: 1.6;
+      }
+
+      @media (max-width: 768px) {
+        .input-group {
+          flex-direction: column;
+          align-items: stretch;
+        }
+        .input-group label {
+          min-width: auto;
+          margin-bottom: 5px;
+        }
+        .converter-section {
+          padding: 20px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        header {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .back-arrow {
+          height: auto; /* Sesuaikan tinggi agar tidak memengaruhi header saat wrap */
+          margin-bottom: 10px;
+        }
+        header h1 {
+          font-size: 22px;
+        }
+        header img {
+          width: 40px;
+          height: 40px;
+        }
+        .converter-section h2 {
+          font-size: 20px;
+        }
+        .fun-facts-section h3 {
+          font-size: 18px;
+        }
+      }
+
+      .footer {
+        text-align: center;
+        padding: 20px 0;
+        font-size: 12px;
+        color: #ffffff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header>
+        <a href="../index.html" class="back-arrow">←</a>
+        <img src="../unitiverse.png" alt="Unitiverse Logo" />
+        <h1>Unitiverse</h1>
+      </header>
+
+      <div class="converter-section">
+        <h2>Konverter Satuan Berat (Massa)</h2>
+        <div class="input-group">
+          <label for="value">Nilai:</label>
+          <input
+            type="number"
+            id="value"
+            placeholder="Masukkan nilai"
+            oninput="convertWeight()"
+          />
+        </div>
+        <div class="input-group">
+          <label for="unit">Dari:</label>
+          <select id="unit" onchange="convertWeight()">
+            <option value="yottagram">Yottagram (Yg)</option>
+            <option value="zettagram">Zettagram (Zg)</option>
+            <option value="exagram">Exagram (Eg)</option>
+            <option value="petagram">Petagram (Pg)</option>
+            <option value="teragram">Teragram (Tg)</option>
+            <option value="gigagram">Gigagram (Gg)</option>
+            <option value="megagram">Megagram (Mg)/Ton (t)</option>
+            <option value="kilogram">Kilogram (kg)</option>
+            <option value="hektogram">Hektogram (hg)</option>
+            <option value="dekagram">Dekagram (dag)</option>
+            <option value="gram">Gram (g)</option>
+            <option value="desigram">Desigram (dg)</option>
+            <option value="sentigram">Sentigram (cg)</option>
+            <option value="milligram">Milligram (mg)</option>
+            <option value="mikrogram">Mikrogram (µg)</option>
+            <option value="nanogram">Nanogram (ng)</option>
+            <option value="pikogram">Pikogram (pg)</option>
+            <option value="ons">Ons (oz)</option>
+            <option value="pound">Pound (lb)</option>
+            <option value="stone">Stone (st)</option>
+            <option value="ton-pendek">Ton Pendek (US)</option>
+            <option value="ton-panjang">Ton Panjang (UK)</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <label for="target-unit">Ke:</label>
+          <select id="target-unit" onchange="convertWeight()">
+            <option value="yottagram">Yottagram (Yg)</option>
+            <option value="zettagram">Zettagram (Zg)</option>
+            <option value="exagram">Exagram (Eg)</option>
+            <option value="petagram">Petagram (Pg)</option>
+            <option value="teragram">Teragram (Tg)</option>
+            <option value="gigagram">Gigagram (Gg)</option>
+            <option value="megagram">Megagram (Mg)/Ton (t)</option>
+            <option value="kilogram">Kilogram (kg)</option>
+            <option value="hektogram">Hektogram (hg)</option>
+            <option value="dekagram">Dekagram (dag)</option>
+            <option value="gram">Gram (g)</option>
+            <option value="desigram">Desigram (dg)</option>
+            <option value="sentigram">Sentigram (cg)</option>
+            <option value="milligram">Milligram (mg)</option>
+            <option value="mikrogram">Mikrogram (µg)</option>
+            <option value="nanogram">Nanogram (ng)</option>
+            <option value="pikogram">Pikogram (pg)</option>
+            <option value="ons">Ons (oz)</option>
+            <option value="pound">Pound (lb)</option>
+            <option value="stone">Stone (st)</option>
+            <option value="ton-pendek">Ton Pendek (US)</option>
+            <option value="ton-panjang">Ton Panjang (UK)</option>
+          </select>
+        </div>
+        <div class="result-display" id="result">
+          Hasil konversi akan muncul di sini
+        </div>
+      </div>
+
+      <div class="fun-facts-section">
+        <h3>🚀 Fun Facts Seputar Berat (Massa)! 🚀</h3>
+        <ul>
+          <li>
+            <strong>Kilogram (kg)</strong> adalah satu-satunya satuan dasar SI
+            yang memiliki awalan "kilo". Ini karena satuan aslinya, gram,
+            dianggap terlalu kecil untuk banyak keperluan praktis.
+          </li>
+          <li>
+            <strong>Satuan berat tertua</strong> yang masih digunakan adalah
+            gram, yang berasal dari sistem metrik Prancis abad ke-18. Awalnya,
+            satu gram didefinisikan sebagai massa satu sentimeter kubik air
+            murni pada suhu 4°C.
+          </li>
+          <li>
+            <strong>Seekor gajah Afrika dewasa</strong> bisa memiliki berat
+            sekitar 6 ton (6.000 kg). Itu setara dengan berat sekitar 100
+            manusia dewasa! 🐘
+          </li>
+          <li>
+            <strong>Berapa berat Bumi?</strong> Sekitar 5,972 × 10<sup>24</sup>
+            kg! Angka ini sangat besar, bahkan untuk satuan Yottagram (Yg).
+          </li>
+          <li>
+            <strong>Satu ons (oz)</strong> setara dengan sekitar 28,35 gram.
+            Jadi, kalau kamu punya sekantong keripik seberat 150 gram, itu
+            kira-kira 5,3 ons! 🥔
+          </li>
+        </ul>
+      </div>
+    </div>
+    <footer class="footer">
+      Copyright © Unitiverse - Ananda David Saputa.
+    </footer>
+
+    <script>
+      function convertWeight() {
+        const value = parseFloat(document.getElementById("value").value);
+        const unit = document.getElementById("unit").value;
+        const targetUnit = document.getElementById("target-unit").value;
+        const resultDisplay = document.getElementById("result");
+
+        if (isNaN(value)) {
+          resultDisplay.textContent = "Masukkan nilai yang valid.";
+          return;
+        }
+
+        // Faktor konversi ke gram (satuan dasar SI untuk massa)
+        const conversionFactors = {
+          yottagram: 1e24,
+          zettagram: 1e21,
+          exagram: 1e18,
+          petagram: 1e15,
+          teragram: 1e12,
+          gigagram: 1e9,
+          megagram: 1e6,
+          kilogram: 1e3,
+          hektogram: 1e2,
+          dekagram: 1e1,
+          gram: 1,
+          desigram: 1e-1,
+          sentigram: 1e-2,
+          milligram: 1e-3,
+          mikrogram: 1e-6,
+          nanogram: 1e-9,
+          pikogram: 1e-12,
+          ons: 28.3495,
+          pound: 453.592,
+          stone: 6350, // 1 stone = 14 lb * 453.592 g/lb = 6350.288 g
+          "ton-pendek": 907185,
+          "ton-panjang": 1016047, // 1016 kg * 1000 g/kg = 1016000 g, dibulatkan
+        };
+
+        let valueInGrams = value * conversionFactors[unit];
+
+        // Konversi dari gram ke satuan target
+        let finalResult = valueInGrams / conversionFactors[targetUnit];
+
+        // Format hasil
+        let formattedResult;
+        if (unit === targetUnit) {
+          formattedResult = value.toString(); // Tampilkan nilai asli jika satuan sama
+        } else if (
+          finalResult > 1e6 ||
+          (finalResult < 1e-6 && finalResult !== 0)
+        ) {
+          formattedResult = finalResult.toExponential(4); // Gunakan notasi ilmiah untuk angka besar/kecil
+        } else {
+          formattedResult = parseFloat(finalResult.toFixed(10)).toString(); // Bulatkan dan hapus nol berlebihan
+        }
+
+        resultDisplay.textContent = `${value} ${unit} = ${formattedResult} ${targetUnit}`;
+      }
+
+      // Panggil konversi saat halaman pertama kali dimuat
+      convertWeight();
+    </script>
+  </body>
+</html>

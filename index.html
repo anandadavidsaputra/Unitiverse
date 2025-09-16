@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unitiverse</title>
+<link rel="icon" type="image/png" href="unitiverse.png">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+  body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #0d1a44, #6a1fb8);
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  .wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+
+  header img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+  }
+
+  header h1 {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 700;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.3);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px 18px;
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(135deg, #0d1a44, #3b0d4d);
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    text-decoration: none;
+    color: #fff;
+    position: relative;
+    min-height: 110px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    overflow: hidden;
+  }
+
+  .card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7);
+  }
+
+  .card .content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    position: relative;
+    z-index: 2;
+    transition: transform 0.3s ease;
+  }
+  
+  .card:hover .content {
+    transform: translateY(-10px); /* Konten naik */
+  }
+
+  .card .title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .card .desc {
+    font-size: 14px;
+    color: #d1d5db;
+    margin-bottom: 8px;
+  }
+
+  .card .emoji {
+    font-size: 24px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 3; /* Z-index lebih tinggi agar di atas elemen lain */
+    transition: transform 0.3s ease; /* Transisi untuk emoji */
+  }
+
+  .card:hover .emoji {
+    transform: translateY(-5px); /* Emoji naik sedikit saat hover */
+  }
+  
+  .card hr {
+    border: none;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 10px 0;
+  }
+
+  .card .detail-text {
+    font-size: 12px;
+    font-weight: 500;
+    color: #ffffff; /* Warna putih */
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 2; /* Pastikan teks detail di bawah emoji */
+  }
+  
+  .card:hover .detail-text {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Media Queries */
+  @media(max-width: 992px) {
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    header h1 {
+      font-size: 24px;
+    }
+  }
+
+  @media(max-width: 480px) {
+    .grid {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    header {
+      flex-direction: column;
+      align-items: flex-start;
+      margin-bottom: 20px;
+    }
+    header h1 {
+      font-size: 22px;
+    }
+    header img {
+      width: 40px;
+      height: 40px;
+    }
+    .card {
+      padding: 18px;
+      min-height: 100px;
+    }
+    .card .title {
+      font-size: 18px;
+    }
+    .card .emoji {
+      font-size: 20px;
+      top: 18px;
+      right: 18px;
+    }
+  }
+
+  .footer {
+    text-align: center;
+    padding: 20px 0;
+    font-size: 12px;
+    color: #ffffff;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <img src="unitiverse.png" alt="Unitiverse Logo">
+    <h1>Unitiverse</h1>
+  </header>
+
+  <div class="grid">
+    <a href="menu/panjang.html" class="card">
+      <div class="content">
+        <div class="title">Panjang</div>
+        <hr>
+        <div class="desc">Mengubah satuan jarak dari milimeter hingga kilometer. 📏</div>
+      </div>
+      <div class="emoji">📏</div>
+      <span class="detail-text">Klik untuk detail konversi</span>
+    </a>
+    <a href="menu/berat.html" class="card">
+      <div class="content">
+        <div class="title">Berat</div>
+        <hr>
+        <div class="desc">Mengubah satuan berat dari miligram hingga ton. ⚖️</div>
+      </div>
+      <div class="emoji">⚖️</div>
+      <span class="detail-text">Klik untuk detail konversi</span>
+    </a>
+    <a href="menu/volume.html" class="card">
+      <div class="content">
+        <div class="title">Volume</div>
+        <hr>
+        <div class="desc">Mengubah satuan volume dari mililiter hingga meter kubik. ⚗️</div>
+      </div>
+      <div class="emoji">⚗️</div>
+      <span class="detail-text">Klik untuk detail konversi</span>
+    </a>
+
+    <a href="menu/waktu.html" class="card">
+      <div class="content">
+        <div class="title">Waktu</div>
+        <hr>
+        <div class="desc">Mengubah satuan waktu dari detik hingga tahun. ⏱️</div>
+      </div>
+      <div class="emoji">⏱️</div>
+      <span class="detail-text">Klik untuk detail konversi</span>
+    </a>
+    <a href="menu/energi.html" class="card">
+      <div class="content">
+        <div class="title">Energi</div>
+        <hr>
+        <div class="desc">Mengubah satuan energi dari joule hingga kalori. ⚡</div>
+      </div>
+      <div class="emoji">⚡</div>
+      <span class="detail-text">Klik untuk detail konversi</span>
+    </a>
+    <a href="menu/suhu.html" class="card">
+      <div class="content">
+        <div class="title">Suhu</div>
+        <hr>
+        <div class="desc">Mengubah satuan suhu dari Celsius, Fahrenheit, hingga Kelvin. 🌡️</div>
+      </div>
+      <div class="emoji">🌡️</div>
+      <span class="detail-text">Klik untuk detail konversi</span>
+    </a>
+
+    <a href="menu/data.html" class="card">
+      <div class="content">
+        <div class="title">Data</div>
+        <hr>
+        <div class="desc">Mengubah satuan data dari bit, byte, kilobyte, hingga gigabyte. 💾</div>
+      </div>
+      <div class="emoji">💾</div>
+      <span class="detail-text">Klik untuk detail konversi</span>
+    </a>
+    <a href="menu/astronomi.html" class="card">
+      <div class="content">
+        <div class="title">Astronomi</div>
+        <hr>
+        <div class="desc">Mengubah satuan jarak astronomi seperti tahun cahaya. ✨</div>
+      </div>
+      <div class="emoji">✨</div>
+      <span class="detail-text">Klik untuk detail konversi</span>
+    </a>
+    <a href="menu/kecepatan.html" class="card">
+      <div class="content">
+        <div class="title">Kecepatan</div>
+        <hr>
+        <div class="desc">Mengubah satuan kecepatan dari meter per detik hingga kilometer per jam. 🚀</div>
+      </div>
+      <div class="emoji">🚀</div>
+      <span class="detail-text">Klik untuk detail konversi</span>
+    </a>
+  </div>
+</div>
+<footer class="footer">
+  Copyright © Unitiverse - Ananda David Saputa.
+</footer>
+<body>
+</html>

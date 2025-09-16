@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Konverter Data - Unitiverse</title>
+    <link rel="icon" type="image/png" href="../unitiverse.png" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap");
+
+      body {
+        margin: 0;
+        font-family: "Inter", sans-serif;
+        background: linear-gradient(135deg, #0d1a44, #6a1fb8);
+        color: #fff;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      .wrap {
+        max-width: 800px;
+        margin: 0 auto;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 28px;
+      }
+
+      header img {
+        width: 50px;
+        height: 50px;
+        object-fit: contain;
+      }
+
+      header h1 {
+        margin: 0;
+        font-size: 28px;
+        font-weight: 700;
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.5),
+          0 0 20px rgba(255, 255, 255, 0.3);
+      }
+
+      .converter-section {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 30px;
+        border-radius: 16px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+        margin-bottom: 30px;
+      }
+
+      .converter-section h2 {
+        text-align: center;
+        margin-top: 0;
+        margin-bottom: 25px;
+        font-size: 24px;
+        font-weight: 700;
+      }
+
+      .input-group {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 20px;
+      }
+
+      .input-group label {
+        font-size: 16px;
+        font-weight: 600;
+        min-width: 100px;
+      }
+
+      .input-group input[type="number"] {
+        flex-grow: 1;
+        padding: 12px 15px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 8px;
+        background: rgba(0, 0, 0, 0.2);
+        color: #fff;
+        font-size: 16px;
+        outline: none;
+        transition: border-color 0.2s ease;
+      }
+
+      .input-group input[type="number"]:focus {
+        border-color: #a78bfa;
+      }
+
+      .input-group select {
+        flex-grow: 1;
+        padding: 12px 15px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 8px;
+        background: rgba(0, 0, 0, 0.2);
+        color: #fff;
+        font-size: 16px;
+        outline: none;
+        cursor: pointer;
+        transition: border-color 0.2s ease;
+      }
+
+      .input-group select:focus {
+        border-color: #a78bfa;
+      }
+
+      .input-group select option {
+        background: #311f4d;
+        color: #fff;
+      }
+
+      .result-display {
+        margin-top: 25px;
+        text-align: center;
+        font-size: 18px;
+        font-weight: 600;
+        color: #a78bfa;
+      }
+
+      .fun-facts-section {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 25px;
+        border-radius: 16px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+        margin-top: 30px;
+      }
+
+      .fun-facts-section h3 {
+        text-align: center;
+        margin-top: 0;
+        margin-bottom: 15px;
+        font-size: 20px;
+        font-weight: 700;
+        color: #c4b5fd;
+      }
+
+      .fun-facts-section ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .fun-facts-section li {
+        font-size: 14px;
+        margin-bottom: 12px;
+        line-height: 1.6;
+      }
+
+      @media (max-width: 768px) {
+        .input-group {
+          flex-direction: column;
+          align-items: stretch;
+        }
+        .input-group label {
+          min-width: auto;
+          margin-bottom: 5px;
+        }
+        .converter-section {
+          padding: 20px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        header {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        header h1 {
+          font-size: 22px;
+        }
+        header img {
+          width: 40px;
+          height: 40px;
+        }
+        .converter-section h2 {
+          font-size: 20px;
+        }
+        .fun-facts-section h3 {
+          font-size: 18px;
+        }
+      }
+
+      .footer {
+        text-align: center;
+        padding: 20px 0;
+        font-size: 12px;
+        color: #ffffff;
+      }
+
+      .back-arrow {
+        font-size: 36px; /* Ukuran panah lebih besar */
+        color: #fff; /* Warna putih */
+        text-decoration: none; /* Hilangkan garis bawah */
+        margin-right: 15px; /* Jarak dari logo */
+        transition: color 0.2s ease, transform 0.2s ease; /* Efek hover */
+        display: flex; /* Untuk posisi vertikal di tengah */
+        align-items: center; /* Posisi vertikal di tengah */
+        height: 50px; /* Samakan tinggi dengan gambar logo */
+      }
+
+      .back-arrow:hover {
+        color: #a78bfa; /* Warna saat di-hover */
+        transform: translateX(-5px); /* Efek bergerak sedikit ke kiri */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header>
+        <a href="../index.html" class="back-arrow">←</a>
+        <img src="../unitiverse.png" alt="Unitiverse Logo" />
+        <h1>Unitiverse</h1>
+      </header>
+
+      <div class="converter-section">
+        <h2>Konverter Satuan Data</h2>
+        <div class="input-group">
+          <label for="value">Nilai:</label>
+          <input
+            type="number"
+            id="value"
+            placeholder="Masukkan nilai"
+            oninput="convertData()"
+          />
+        </div>
+        <div class="input-group">
+          <label for="unit">Dari:</label>
+          <select id="unit" onchange="convertData()">
+            <option value="yottabyte">Yottabyte (YB)</option>
+            <option value="zettabyte">Zettabyte (ZB)</option>
+            <option value="exabyte">Exabyte (EB)</option>
+            <option value="petabyte">Petabyte (PB)</option>
+            <option value="terabyte">Terabyte (TB)</option>
+            <option value="gigabyte">Gigabyte (GB)</option>
+            <option value="megabyte">Megabyte (MB)</option>
+            <option value="kilobyte">Kilobyte (kB)</option>
+            <option value="byte">Byte (B)</option>
+
+            <option value="yottabit">Yottabit (Yb)</option>
+            <option value="zettabit">Zettabit (Zb)</option>
+            <option value="exabit">Exabit (Eb)</option>
+            <option value="petabit">Petabit (Pb)</option>
+            <option value="terabit">Terabit (Tb)</option>
+            <option value="gigabit">Gigabit (Gb)</option>
+            <option value="megabit">Megabit (Mb)</option>
+            <option value="kilobit">Kilobit (kb)</option>
+            <option value="bit">Bit (b)</option>
+
+            <option value="exbibyte">Exbibyte (EiB)</option>
+            <option value="pebibyte">Pebibyte (PiB)</option>
+            <option value="tebibyte">Tebibyte (TiB)</option>
+            <option value="gibibyte">Gibibyte (GiB)</option>
+            <option value="mebibyte">Mebibyte (MiB)</option>
+            <option value="kibibyte">Kibibyte (KiB)</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <label for="target-unit">Ke:</label>
+          <select id="target-unit" onchange="convertData()">
+            <option value="yottabyte">Yottabyte (YB)</option>
+            <option value="zettabyte">Zettabyte (ZB)</option>
+            <option value="exabyte">Exabyte (EB)</option>
+            <option value="petabyte">Petabyte (PB)</option>
+            <option value="terabyte">Terabyte (TB)</option>
+            <option value="gigabyte">Gigabyte (GB)</option>
+            <option value="megabyte">Megabyte (MB)</option>
+            <option value="kilobyte">Kilobyte (kB)</option>
+            <option value="byte">Byte (B)</option>
+
+            <option value="yottabit">Yottabit (Yb)</option>
+            <option value="zettabit">Zettabit (Zb)</option>
+            <option value="exabit">Exabit (Eb)</option>
+            <option value="petabit">Petabit (Pb)</option>
+            <option value="terabit">Terabit (Tb)</option>
+            <option value="gigabit">Gigabit (Gb)</option>
+            <option value="megabit">Megabit (Mb)</option>
+            <option value="kilobit">Kilobit (kb)</option>
+            <option value="bit">Bit (b)</option>
+
+            <option value="exbibyte">Exbibyte (EiB)</option>
+            <option value="pebibyte">Pebibyte (PiB)</option>
+            <option value="tebibyte">Tebibyte (TiB)</option>
+            <option value="gibibyte">Gibibyte (GiB)</option>
+            <option value="mebibyte">Mebibyte (MiB)</option>
+            <option value="kibibyte">Kibibyte (KiB)</option>
+          </select>
+        </div>
+        <div class="result-display" id="result">
+          Hasil konversi akan muncul di sini
+        </div>
+      </div>
+
+      <div class="fun-facts-section">
+        <h3>🚀 Fun Facts Seputar Data! 🚀</h3>
+        <ul>
+          <li>
+            <b>1 Byte = 8 Bit</b>, ini adalah dasar dari semua data digital.
+            Bayangkan bit sebagai saklar lampu on/off, dan byte sebagai
+            sekelompok saklar yang bisa mewakili satu karakter, seperti huruf
+            'A' atau angka '1'. 💡
+          </li>
+          <li>
+            Perbedaan antara <b>Kilobyte (kB)</b> dan
+            <b>Kibibyte (KiB)</b> sering membingungkan. Kilobyte menggunakan
+            basis 10 (10<sup>3</sup>), umum di penyimpanan seperti hard disk.
+            Sementara Kibibyte menggunakan basis 2 (2<sup>10</sup>), lebih
+            sering digunakan dalam sistem operasi dan RAM. Perbedaannya kecil
+            pada skala kecil, tapi besar pada skala besar! 🧐
+          </li>
+          <li>
+            Pernahkah Anda berpikir seberapa banyak data yang dihasilkan
+            manusia? Diperkirakan pada tahun 2025, total data global akan
+            mencapai lebih dari 175 Zettabyte (ZB)! Itu setara dengan 175
+            triliun Gigabyte. 🤯
+          </li>
+          <li>
+            <b>Yottabyte (YB)</b> adalah satuan data yang sangat besar, setara
+            dengan 10<sup>24</sup> Byte. Jumlah ini lebih besar dari perkiraan
+            jumlah atom di seluruh alam semesta yang terlihat! 🌌
+          </li>
+          <li>
+            Istilah <b>"Bug"</b> dalam komputasi pertama kali digunakan secara
+            luas ketika ditemukan ngengat yang menyebabkan masalah pada komputer
+            Harvard Mark II pada tahun 1947. Namun, penggunaan kata "bug" untuk
+            merujuk kesalahan teknis sudah ada sejak abad ke-19. 🦋
+          </li>
+        </ul>
+      </div>
+    </div>
+    <footer class="footer">
+      Copyright © Unitiverse - Ananda David Saputa.
+    </footer>
+
+    <script>
+      function convertData() {
+        const value = parseFloat(document.getElementById("value").value);
+        const unit = document.getElementById("unit").value;
+        const targetUnit = document.getElementById("target-unit").value;
+        const resultDisplay = document.getElementById("result");
+
+        if (isNaN(value)) {
+          resultDisplay.textContent = "Masukkan nilai yang valid.";
+          return;
+        }
+
+        // Faktor konversi ke Byte
+        const conversionFactors = {
+          // Bits
+          bit: 1 / 8,
+          kilobit: 1e3 / 8,
+          megabit: 1e6 / 8,
+          gigabit: 1e9 / 8,
+          terabit: 1e12 / 8,
+          petabit: 1e15 / 8,
+          exabit: 1e18 / 8,
+          zettabit: 1e21 / 8,
+          yottabit: 1e24 / 8,
+
+          // Bytes
+          byte: 1,
+          kilobyte: 1e3,
+          megabyte: 1e6,
+          gigabyte: 1e9,
+          terabyte: 1e12,
+          petabyte: 1e15,
+          exabyte: 1e18,
+          zettabyte: 1e21,
+          yottabyte: 1e24,
+
+          // Binary Prefixes (IEC)
+          kibibyte: Math.pow(2, 10),
+          mebibyte: Math.pow(2, 20),
+          gibibyte: Math.pow(2, 30),
+          tebibyte: Math.pow(2, 40),
+          pebibyte: Math.pow(2, 50),
+          exbibyte: Math.pow(2, 60),
+        };
+
+        let valueInBytes = value * conversionFactors[unit];
+
+        // Konversi dari Byte ke satuan target
+        let finalResult = valueInBytes / conversionFactors[targetUnit];
+
+        // Format hasil
+        let formattedResult;
+        if (unit === targetUnit) {
+          formattedResult = value.toString(); // Tampilkan nilai asli jika satuan sama
+        } else if (
+          finalResult > 1e6 ||
+          (finalResult < 1e-6 && finalResult !== 0)
+        ) {
+          formattedResult = finalResult.toExponential(4); // Gunakan notasi ilmiah untuk angka besar/kecil
+        } else {
+          formattedResult = parseFloat(finalResult.toFixed(10)).toString(); // Bulatkan dan hapus nol berlebihan
+        }
+
+        resultDisplay.textContent = `${value} ${unit} = ${formattedResult} ${targetUnit}`;
+      }
+
+      // Panggil konversi saat halaman pertama kali dimuat
+      convertData();
+    </script>
+  </body>
+</html>
