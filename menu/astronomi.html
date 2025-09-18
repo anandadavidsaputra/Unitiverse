@@ -5,214 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Konverter Astronomi - Unitiverse</title>
     <link rel="icon" type="image/png" href="../unitiverse.png" />
-    <style>
-      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap");
-
-      body {
-        margin: 0;
-        font-family: "Inter", sans-serif;
-        background: linear-gradient(135deg, #0d1a44, #6a1fb8);
-        color: #fff;
-        padding: 20px;
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-      }
-
-      .wrap {
-        max-width: 800px;
-        margin: 0 auto;
-        flex-grow: 1;
-        display: flex;
-        flex-direction: column;
-      }
-
-      header {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        margin-bottom: 28px;
-      }
-
-      header img {
-        width: 50px;
-        height: 50px;
-        object-fit: contain;
-      }
-
-      header h1 {
-        margin: 0;
-        font-size: 28px;
-        font-weight: 700;
-        text-shadow: 0 0 10px rgba(255, 255, 255, 0.5),
-          0 0 20px rgba(255, 255, 255, 0.3);
-      }
-
-      .converter-section {
-        background: rgba(255, 255, 255, 0.05);
-        padding: 30px;
-        border-radius: 16px;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
-        margin-bottom: 30px;
-      }
-
-      .converter-section h2 {
-        text-align: center;
-        margin-top: 0;
-        margin-bottom: 25px;
-        font-size: 24px;
-        font-weight: 700;
-      }
-
-      .input-group {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-        margin-bottom: 20px;
-      }
-
-      .input-group label {
-        font-size: 16px;
-        font-weight: 600;
-        min-width: 100px;
-      }
-
-      .input-group input[type="number"] {
-        flex-grow: 1;
-        padding: 12px 15px;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 8px;
-        background: rgba(0, 0, 0, 0.2);
-        color: #fff;
-        font-size: 16px;
-        outline: none;
-        transition: border-color 0.2s ease;
-      }
-
-      .input-group input[type="number"]:focus {
-        border-color: #a78bfa;
-      }
-
-      .input-group select {
-        flex-grow: 1;
-        padding: 12px 15px;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 8px;
-        background: rgba(0, 0, 0, 0.2);
-        color: #fff;
-        font-size: 16px;
-        outline: none;
-        cursor: pointer;
-        transition: border-color 0.2s ease;
-      }
-
-      .input-group select:focus {
-        border-color: #a78bfa;
-      }
-
-      .input-group select option {
-        background: #311f4d;
-        color: #fff;
-      }
-
-      .result-display {
-        margin-top: 25px;
-        text-align: center;
-        font-size: 18px;
-        font-weight: 600;
-        color: #a78bfa;
-      }
-
-      .fun-facts-section {
-        background: rgba(255, 255, 255, 0.05);
-        padding: 25px;
-        border-radius: 16px;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
-        margin-top: 30px;
-      }
-
-      .fun-facts-section h3 {
-        text-align: center;
-        margin-top: 0;
-        margin-bottom: 15px;
-        font-size: 20px;
-        font-weight: 700;
-        color: #c4b5fd;
-      }
-
-      .fun-facts-section ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-      }
-
-      .fun-facts-section li {
-        font-size: 14px;
-        margin-bottom: 12px;
-        line-height: 1.6;
-      }
-
-      @media (max-width: 768px) {
-        .input-group {
-          flex-direction: column;
-          align-items: stretch;
-        }
-        .input-group label {
-          min-width: auto;
-          margin-bottom: 5px;
-        }
-        .converter-section {
-          padding: 20px;
-        }
-      }
-
-      @media (max-width: 480px) {
-        header {
-          flex-direction: row; /* tetap horizontal */
-          align-items: center; /* center vertikal */
-          justify-content: flex-start; /* bisa ganti center kalau mau logo & judul di tengah */
-          gap: 8px; /* jarak antar logo & judul */
-          margin-bottom: 20px;
-        }
-        header h1 {
-          font-size: 22px;
-        }
-        header img {
-          width: 40px;
-          height: 40px;
-        }
-        .converter-section h2 {
-          font-size: 20px;
-        }
-        .fun-facts-section h3 {
-          font-size: 18px;
-        }
-      }
-
-      .footer {
-        text-align: center;
-        padding: 20px 0;
-        margin-top: 20px;
-        font-size: 12px;
-        color: #ffffff;
-      }
-
-      .back-arrow {
-        font-size: 36px; /* Ukuran panah lebih besar */
-        color: #fff; /* Warna putih */
-        text-decoration: none; /* Hilangkan garis bawah */
-        margin-right: 15px; /* Jarak dari logo */
-        transition: color 0.2s ease, transform 0.2s ease; /* Efek hover */
-        display: flex; /* Untuk posisi vertikal di tengah */
-        align-items: center; /* Posisi vertikal di tengah */
-        height: 50px; /* Samakan tinggi dengan gambar logo */
-      }
-
-      .back-arrow:hover {
-        color: #a78bfa; /* Warna saat di-hover */
-        transform: translateX(-5px); /* Efek bergerak sedikit ke kiri */
-      }
-    </style>
+    <link rel="stylesheet" href="../css/menu.css" />
   </head>
   <body>
     <div class="wrap">
@@ -240,7 +33,7 @@
             <option value="kilometer">Kilometer (km)</option>
             <option value="au">Astronomical Unit (AU)</option>
             <option value="lightyear">Tahun Cahaya (ly)</option>
-            <option value="parsec">Parsek (pc)</option>
+            <option value="parsec" selected>Parsek (pc)</option>
             <option value="kiloparsec">Kiloparsec (kpc)</option>
             <option value="megaparsec">Megaparsec (Mpc)</option>
             <option value="gigaparsec">Gigaparsec (Gpc)</option>
@@ -253,7 +46,7 @@
             <option value="kilometer">Kilometer (km)</option>
             <option value="au">Astronomical Unit (AU)</option>
             <option value="lightyear">Tahun Cahaya (ly)</option>
-            <option value="parsec">Parsek (pc)</option>
+            <option value="parsec" selected>Parsek (pc)</option>
             <option value="kiloparsec">Kiloparsec (kpc)</option>
             <option value="megaparsec">Megaparsec (Mpc)</option>
             <option value="gigaparsec">Gigaparsec (Gpc)</option>
@@ -299,53 +92,6 @@
       Copyright © Unitiverse - Ananda David Saputa.
     </footer>
 
-    <script>
-      function convertAstronomy() {
-        const value = parseFloat(document.getElementById("value").value);
-        const unit = document.getElementById("unit").value;
-        const targetUnit = document.getElementById("target-unit").value;
-        const resultDisplay = document.getElementById("result");
-
-        if (isNaN(value)) {
-          resultDisplay.textContent = "Masukkan nilai yang valid.";
-          return;
-        }
-
-        // Faktor konversi ke meter
-        const conversionFactors = {
-          meter: 1,
-          kilometer: 1e3,
-          au: 1.496e11,
-          lightyear: 9.461e15,
-          parsec: 3.086e16,
-          kiloparsec: 3.086e19,
-          megaparsec: 3.086e22,
-          gigaparsec: 3.086e25,
-        };
-
-        let valueInMeters = value * conversionFactors[unit];
-
-        // Konversi dari meter ke satuan target
-        let finalResult = valueInMeters / conversionFactors[targetUnit];
-
-        // Format hasil
-        let formattedResult;
-        if (unit === targetUnit) {
-          formattedResult = value.toString(); // Tampilkan nilai asli jika satuan sama
-        } else if (
-          finalResult > 1e6 ||
-          (finalResult < 1e-6 && finalResult !== 0)
-        ) {
-          formattedResult = finalResult.toExponential(4); // Gunakan notasi ilmiah untuk angka besar/kecil
-        } else {
-          formattedResult = parseFloat(finalResult.toFixed(10)).toString(); // Bulatkan dan hapus nol berlebihan
-        }
-
-        resultDisplay.textContent = `${value} ${unit} = ${formattedResult} ${targetUnit}`;
-      }
-
-      // Panggil konversi saat halaman pertama kali dimuat
-      convertAstronomy();
-    </script>
+    <script src="../js/astronomi.js"></script>
   </body>
 </html>
